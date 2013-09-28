@@ -13,9 +13,6 @@ command('talk', function (rest, player, game) {
 		// Can this character talk?
 		if (typeof target.talk !== undefined) {
 			
-			// Default to the biggining
-			conversationLevel = target.talk(player, game);
-			
 			// Is this a reply from the user?
 			if (reply) {
 			
@@ -23,8 +20,8 @@ command('talk', function (rest, player, game) {
 				if (playerTalkState[player.name] && playerTalkState[player.name][reply]) {
 					
 					// So we run the function associated with that reply 
-					replyResult = playerTalkState[player.name][reply][1](player, game); 
-					
+					replyResult = playerTalkState[player.name][reply][1](player, game);
+
 					// The result should either be an object or falsy
 					if (replyResult) {
 						
@@ -45,6 +42,11 @@ command('talk', function (rest, player, game) {
 					
 				}
 				
+			} else {
+
+				// No reply so start at the top level of conversation
+				conversationLevel = target.talk(player, game);
+
 			}
 			
 			// Intro

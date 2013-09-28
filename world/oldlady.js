@@ -1,15 +1,27 @@
 var startChatToOldlady = function(player, game) {
 
-  oldlady.execute('say Hello dearie, I\'m so upset because my daughter here has died.');
+  player.write('Oldlady says: Hello dearie, I\'m so upset because my daughter here has died.');
   player.write('The Old Lady shows you a beaten up looking doll with a missing eye.');
-  oldlady.execute('say I wonder if you can find me a glass eye and some thread so I can put her eye back. I think we have a chance to bring her back to life.');
+  player.write('Oldlady says: I wonder if you can find me a glass eye and some thread so I can put her eye back. I think we have a chance to bring her back to life.');
 
   return {
-    'yes' : ['Yes I will help', function(player, game) { player.write('Thank you'); }],
-    'no' : ['Sorry but no', function(player, game) { player.write('Boo'); }]
+    'yes' : ['Yes I will help', playerAccepts],
+    'no' : ['Sorry but no', playerDeclines]
   };
 
-}
+};
+
+var playerAccepts = function(player, game) {
+
+  player.write('Oldlady says: Thank you'); 
+
+};
+
+var playerDeclines = function(player, game) {
+
+  player.write('Oldlady says: How rude'); 
+
+};
 
 var oldlady = character('oldlady', {
   location: 'dollhouse',
